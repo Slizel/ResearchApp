@@ -1,0 +1,108 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "dc1912e342b213d6a0db2f711db98c30",
+    "entities": [
+      {
+        "tableName": "Pesquisas",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ConcorrenteID` INTEGER NOT NULL, `Data` TEXT NOT NULL, `Syncronized` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "ID",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ConcorrenteID",
+            "columnName": "ConcorrenteID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Data",
+            "columnName": "Data",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Sync",
+            "columnName": "Syncronized",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PesquisaProduto",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `PesquisaID` INTEGER NOT NULL, `ProdutoID` INTEGER NOT NULL, `CodigoDeBarras` TEXT, `Preço` TEXT, `Data` TEXT, `Solicitado` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "ID",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "PesquisaID",
+            "columnName": "PesquisaID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ProdutoID",
+            "columnName": "ProdutoID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "CodBarras",
+            "columnName": "CodigoDeBarras",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "Preco",
+            "columnName": "Preço",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "Data",
+            "columnName": "Data",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "Solicitado",
+            "columnName": "Solicitado",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dc1912e342b213d6a0db2f711db98c30')"
+    ]
+  }
+}
