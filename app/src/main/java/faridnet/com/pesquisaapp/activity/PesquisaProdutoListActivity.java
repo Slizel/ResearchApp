@@ -68,7 +68,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
         if (getIntent().hasExtra("pesquisa")) {
             mPesquisa = getIntent().getParcelableExtra("pesquisa");
             Log.d(TAG, "onCreate PesquisaListActivity: recebeu no get Extras " + mPesquisa.toString());
-            Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
 
             initRecyclerView();
             retrievePesquisaProduto(mPesquisa.getID());
@@ -125,7 +125,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "OnClick Clicado!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "OnClick Clicado!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, EditPesquisaProdutoActivity.class);
         intent.putExtra("pesquisa", mPesquisa);
         startActivity(intent);

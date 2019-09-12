@@ -1,6 +1,7 @@
 package faridnet.com.pesquisaapp.adapters;
 
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -23,6 +24,7 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
 
     private static final String TAG = "PesquisaRecyclerAdapter";
 
+
     //É necessário criar uma estrutura de dado para comportar cada pesquisa da lista.
     private ArrayList<Pesquisa> mPesquisa = new ArrayList<>();
 
@@ -41,6 +43,7 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
     }
 
     //------------------ Metodos que precisam ser sobrescritos quando se extend uma RecyclerView -------------------
+    @SuppressLint("ResourceType")
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -59,7 +62,6 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
         viewHolder.ID.setText(String.valueOf(mPesquisa.get(i).getID()));
         viewHolder.IdConcorrente.setText(String.valueOf(mPesquisa.get(i).getConcorrenteID()));
         viewHolder.Data.setText(mPesquisa.get(i).getData());
-
 
         //New Dynamic que mostra a data dinamicamente.
 //        try {
@@ -80,6 +82,7 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
 //        }
 
     }
+
 
     @Override
     public int getItemCount() {

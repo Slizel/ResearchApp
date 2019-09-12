@@ -42,7 +42,7 @@ public class PesquisaProdutoRecyclerAdapter extends RecyclerView.Adapter<Pesquis
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
         viewHolder.codBarras.setText(mPesquisaProduto.get(i).getCodBarras());
-        viewHolder.preco.setText(mPesquisaProduto.get(i).getPreco());
+        viewHolder.preco.setText("R$ " + mPesquisaProduto.get(i).getPreco());
     }
 
     @Override

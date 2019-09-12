@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.EditPesquisaProdutoActivity"></activity>
+        <activity android:name=".activity.PesquisaListActivity"></activity>
+        <activity android:name=".activity.EditPesquisaProdutoActivity" />
         <activity android:name=".activity.PesquisaProdutoListActivity" />
-        <activity android:name=".activity.PesquisaListActivity">
+        <activity android:name=".activity.SplashScreen"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ConcorrenteSpinnerActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ConcorrenteSpinnerActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

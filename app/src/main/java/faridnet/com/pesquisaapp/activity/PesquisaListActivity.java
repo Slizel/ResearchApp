@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.List;
 import faridnet.com.pesquisaapp.R;
 import faridnet.com.pesquisaapp.adapters.PesquisaRecyclerAdapter;
 import faridnet.com.pesquisaapp.dialogs.DeletePesquisaPermissionDialog;
+import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.persistence.PesquisaRepository;
 import faridnet.com.pesquisaapp.util.Utility;
@@ -38,15 +40,14 @@ public class PesquisaListActivity extends AppCompatActivity implements
 
     // UI components
     private RecyclerView mRecyclerView;
+    private TextView concorrente;
 
     //Vars
     private ArrayList<Pesquisa> mPesquisa = new ArrayList<>();
     private PesquisaRecyclerAdapter mPesquisaRecyclerAdapter;
 
-
     //BD
     private PesquisaRepository mPesquisaRepository;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class PesquisaListActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_pesquisa_list);
         mRecyclerView = findViewById(R.id.recyclerView);
 
-        Log.d(TAG, "onCreate: thread:" + Thread.currentThread().getName());
+        //Log.d(TAG, "onCreate: thread:" + Thread.currentThread().getName());
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Pesquisa));
         setTitle("Pesquisa");
@@ -119,8 +120,8 @@ public class PesquisaListActivity extends AppCompatActivity implements
     // PesquisaRecyclerAdapter.OnPesquisaListener para usar. Busca por uma pesquisa já existente
     @Override
     public void onPesquisaClick(int position) {
-        Log.d(TAG, "onPesquisaClick: clicked.");
-        Toast.makeText(this, "On Pesquisa Click Clicado!", Toast.LENGTH_LONG).show();
+        //Log.d(TAG, "onPesquisaClick: clicked.");
+        //Toast.makeText(this, "On Pesquisa Click Clicado!", Toast.LENGTH_LONG).show();
 
         //Passar intent com bundle
         Intent intent = new Intent(this, PesquisaProdutoListActivity.class);
@@ -172,6 +173,7 @@ public class PesquisaListActivity extends AppCompatActivity implements
 
                 Toast.makeText(getApplicationContext(),
                         "Pesquisa Deletada", Toast.LENGTH_SHORT).show();
+
                 deletePesquisa(mPesquisa.get(position));
             }
         });

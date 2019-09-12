@@ -36,7 +36,7 @@ public class Pesquisa implements Parcelable {
     public Pesquisa(int ConcorrenteID) {
 
         //String Date = Utility.getCurrentTimestamp();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); //dd-MM-yyyy HH:mm"
         String currentDateTime = dateFormat.format(new Date());
 
         this.ConcorrenteID = ConcorrenteID;

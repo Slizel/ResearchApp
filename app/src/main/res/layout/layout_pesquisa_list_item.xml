@@ -9,7 +9,7 @@
     android:id="@+id/listLinearLayout">
 
     <View
-        android:layout_width="8dp"
+        android:layout_width="5dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:background="@color/colorVarejo" />
@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/id_pesquisa_ID"
-        android:layout_width="105dp"
+        android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:layout_weight="20"
         android:lines="1"
@@ -33,8 +33,8 @@
 
     <TextView
         android:id="@+id/id_concorrente"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="match_parent"
         android:layout_weight="45"
         android:lines="1"
         android:padding="10dp"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/id_data_pesquisa"
-        android:layout_width="204dp"
+        android:layout_width="108dp"
         android:layout_height="51dp"
         android:layout_weight="30"
         android:padding="10dp"

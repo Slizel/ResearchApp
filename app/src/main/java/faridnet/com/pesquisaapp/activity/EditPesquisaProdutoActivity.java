@@ -2,10 +2,12 @@ package faridnet.com.pesquisaapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.view.KeyEvent;
 
@@ -14,6 +16,7 @@ import faridnet.com.pesquisaapp.dialogs.ValidationDialog;
 import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.models.PesquisaProduto;
 import faridnet.com.pesquisaapp.persistence.PesquisaProdutoRepository;
+import faridnet.com.pesquisaapp.util.MoneyTextWatcher;
 
 public class EditPesquisaProdutoActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
 
@@ -34,9 +37,10 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_pesquisa_produto);
-        findViewById(R.id.id_salvar).setOnClickListener(this); //Referenciando o Floating action button
+     //   findViewById(R.id.id_salvar).setOnClickListener(this); //Referenciando o Floating action button
         codBarras = findViewById(R.id.edit_codBarras);
         preco = findViewById(R.id.edit_preco);
+        preco.addTextChangedListener(new MoneyTextWatcher(preco));
         //saveButton = findViewById(R.id.id_salvar);
 
         codBarras.addTextChangedListener(editPesquisaWatcher);
@@ -76,17 +80,22 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
         }
     }
 
-
     public void openDialog() {
         ValidationDialog validationDialog = new ValidationDialog();
         validationDialog.show(getSupportFragmentManager(), "validation dialog");
-
     }
-
 
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
         return false;
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private TextWatcher editPesquisaWatcher = new TextWatcher() {
