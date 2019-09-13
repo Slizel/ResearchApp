@@ -58,7 +58,8 @@ public class PesquisaListActivity extends AppCompatActivity implements
         //Log.d(TAG, "onCreate: thread:" + Thread.currentThread().getName());
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Pesquisa));
-        setTitle("Pesquisa");
+        //setTitle("Pesquisa");
+        getSupportActionBar().setIcon(R.drawable.mylogo);
 
         //Referenciando o Floating action button
         findViewById(R.id.fab).setOnClickListener(this);

@@ -16,8 +16,32 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorVarejo"
-            app:layout_scrollFlags="scroll|enterAlways"
-            >
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:paddingTop="10dp"
+                android:text="Pesquisa Produto"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/bsck_arrow"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:layout_marginStart="40dp"
+                    android:src="@drawable/ic_arrow_back_withe_24dp" />
+            </RelativeLayout>
+
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -40,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_add_withe_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

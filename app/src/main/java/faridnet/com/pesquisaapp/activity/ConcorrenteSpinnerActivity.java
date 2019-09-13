@@ -54,7 +54,8 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_spinner));
-        setTitle("Concorrente");
+        //setTitle("Concorrente");
+        getSupportActionBar().setIcon(R.drawable.mylogo);
 
         findViewById(R.id.fab_spinner).setOnClickListener(this);
 

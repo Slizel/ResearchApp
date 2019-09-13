@@ -63,6 +63,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
         findViewById(R.id.fab_pesquisaProdutoList).setOnClickListener(this);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_PesquisaProduto));
         setTitle("Pesquisa Produto");
+        getSupportActionBar().setIcon(R.drawable.mylogo);
 
         // Recebendo o ID da classe PEsquisa através do extra
         if (getIntent().hasExtra("pesquisa")) {

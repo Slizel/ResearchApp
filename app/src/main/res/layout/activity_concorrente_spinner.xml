@@ -7,13 +7,47 @@
     android:layout_alignParentBottom="true"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_spinner"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorVarejo"
-        app:layout_scrollFlags="scroll|enterAlways"
-        />
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorVarejo"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:layout_marginStart="15dp"
+                android:text="Concorrente"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/bsck_arrow"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:layout_marginStart="40dp"
+                    android:src="@drawable/ic_arrow_back_withe_24dp" />
+            </RelativeLayout>
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
