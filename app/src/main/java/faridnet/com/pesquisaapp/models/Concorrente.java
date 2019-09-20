@@ -17,40 +17,42 @@ public class Concorrente {
     @ColumnInfo(name = "Nome")
     private String Nome;
 
+    @Ignore
     public Concorrente(int ID, String Nome) {
         this.ID = ID;
         this.Nome = Nome;
     }
-
 
     @Ignore
     public Concorrente(int Id) {
         this.ID = Id;
     }
 
-    @Ignore
-    public Concorrente(@NonNull String nome) {
-        Nome = nome;
+
+    public Concorrente(String Nome) {
+        this.Nome = Nome;
     }
 
     @Ignore
     public Concorrente() {
     }
 
-    public int getId() {
+
+    public int getID() {
         return ID;
     }
 
-    public void setId(int id) {
-        ID = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
+    @NonNull
     public String getNome() {
         return Nome;
     }
 
     public void setNome(String nome) {
-        this.Nome = nome;
+        Nome = nome;
     }
 
     @Override

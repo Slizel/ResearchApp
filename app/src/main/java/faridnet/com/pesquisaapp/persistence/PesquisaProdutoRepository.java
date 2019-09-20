@@ -11,6 +11,8 @@ import faridnet.com.pesquisaapp.async.asyncPesquisaProduto.InsertAsyncTaskPesqui
 import faridnet.com.pesquisaapp.models.PesquisaProduto;
 
 public class PesquisaProdutoRepository {
+
+
     private PesquisaDatabase mPesquisaProdutoDatabase;
 
     // Referência do singleton

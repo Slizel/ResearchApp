@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import faridnet.com.pesquisaapp.R;
 import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.models.Pesquisa;
+import faridnet.com.pesquisaapp.persistence.ConcorrenteRepository;
 import faridnet.com.pesquisaapp.persistence.PesquisaDao;
 import faridnet.com.pesquisaapp.persistence.PesquisaRepository;
 
@@ -40,6 +41,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
     // DB
     private PesquisaRepository mPesquisaRepository;
+    private ConcorrenteRepository mConcorrenteRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
         //BD instanciando o repositorio
         mPesquisaRepository = new PesquisaRepository(this);
+        mConcorrenteRepository = new ConcorrenteRepository(this);
 
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_spinner));
@@ -92,29 +95,37 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
         int posicao = sp.getSelectedItemPosition();
 
+        Concorrente concorrente = new Concorrente(mConcorrente.getID(), mConcorrenteNome.getNome());
+
         if (posicao == 0) {
             //supermercado BH
-            mConcorrente.setId(0);
+            mConcorrente.setID(0);
+            Concorrente mConcorrenteNome = new Concorrente("Supermercado BH");
             mConcorrenteNome.setNome("Supermercado BH");
+
+            mConcorrenteRepository.insertConcorrenteTask(concorrente);
+
 
         } else if (posicao == 1) {
             //supermercado EPA
-            mConcorrente.setId(1);
+            mConcorrente.setID(1);
+            Concorrente mConcorrenteNome = new Concorrente("Supermercado EPA");
             mConcorrenteNome.setNome("Supermercado EPA");
+            mConcorrenteRepository.insertConcorrenteTask(concorrente);
         } else {
 
             //supermercado DIA
-            mConcorrente.setId(2);
+            mConcorrente.setID(2);
+            Concorrente mConcorrenteNome = new Concorrente("Supermercado DIA");
             mConcorrenteNome.setNome("Supermercado DIA");
+            mConcorrenteRepository.insertConcorrenteTask(concorrente);
         }
 
-
-        Pesquisa pesquisa = new Pesquisa(mConcorrente.getId());
+        Pesquisa pesquisa = new Pesquisa(mConcorrente.getID());
         mPesquisaRepository.insertPesquisaTask(pesquisa);
 
-
         Intent intent = new Intent(this, PesquisaListActivity.class);
-        intent.putExtra("concorrente_id", mConcorrente.getId());
+        intent.putExtra("concorrente_id", mConcorrente.getID());
         Log.d(TAG, "onCreate: " + mConcorrente.toString());
         startActivity(intent);
     }

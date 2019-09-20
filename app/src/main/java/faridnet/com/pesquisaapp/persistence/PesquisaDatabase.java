@@ -6,10 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.models.PesquisaProduto;
 
-@Database(entities = {Pesquisa.class, PesquisaProduto.class}, version = 2)
+@Database(entities = {Pesquisa.class, PesquisaProduto.class, Concorrente.class}, version = 1)
 public abstract class PesquisaDatabase extends RoomDatabase {
 
     // DB name
@@ -33,6 +34,7 @@ public abstract class PesquisaDatabase extends RoomDatabase {
 
     //Criar referencia para o Dao
     public abstract PesquisaDao getPesquisaDao();
-
     public abstract PesquisaProdutoDao getPesquisaProdutoDao();
+    public abstract ConcorrenteDao getConcorrenteDao();
+
 }
