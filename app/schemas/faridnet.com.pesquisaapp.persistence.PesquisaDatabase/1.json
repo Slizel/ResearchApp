@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e4f4b6bf858bc6c51ec273dcc2480150",
+    "identityHash": "d22700890d6bc46a1fe5421ed0e6306f",
     "entities": [
       {
         "tableName": "Pesquisas",
@@ -100,7 +100,7 @@
       },
       {
         "tableName": "Concorrente",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `Nome` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER NOT NULL, `Nome` TEXT NOT NULL, PRIMARY KEY(`ID`))",
         "fields": [
           {
             "fieldPath": "ID",
@@ -119,7 +119,7 @@
           "columnNames": [
             "ID"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -128,7 +128,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e4f4b6bf858bc6c51ec273dcc2480150')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd22700890d6bc46a1fe5421ed0e6306f')"
     ]
   }
 }

@@ -55,7 +55,6 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
         mPesquisaRepository = new PesquisaRepository(this);
         mConcorrenteRepository = new ConcorrenteRepository(this);
 
-
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_spinner));
         //setTitle("Concorrente");
         getSupportActionBar().setIcon(R.drawable.mylogo);
@@ -93,32 +92,24 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
 
-        int posicao = sp.getSelectedItemPosition();
 
-        Concorrente concorrente = new Concorrente(mConcorrente.getID(), mConcorrenteNome.getNome());
+        int posicao = sp.getSelectedItemPosition();
 
         if (posicao == 0) {
             //supermercado BH
             mConcorrente.setID(0);
-            Concorrente mConcorrenteNome = new Concorrente("Supermercado BH");
             mConcorrenteNome.setNome("Supermercado BH");
-
-            mConcorrenteRepository.insertConcorrenteTask(concorrente);
 
 
         } else if (posicao == 1) {
             //supermercado EPA
             mConcorrente.setID(1);
-            Concorrente mConcorrenteNome = new Concorrente("Supermercado EPA");
             mConcorrenteNome.setNome("Supermercado EPA");
-            mConcorrenteRepository.insertConcorrenteTask(concorrente);
         } else {
 
             //supermercado DIA
             mConcorrente.setID(2);
-            Concorrente mConcorrenteNome = new Concorrente("Supermercado DIA");
             mConcorrenteNome.setNome("Supermercado DIA");
-            mConcorrenteRepository.insertConcorrenteTask(concorrente);
         }
 
         Pesquisa pesquisa = new Pesquisa(mConcorrente.getID());

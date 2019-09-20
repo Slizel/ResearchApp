@@ -2,39 +2,57 @@ package faridnet.com.pesquisaapp.persistence;
 
 import android.content.Context;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.models.PesquisaProduto;
 
-@Database(entities = {Pesquisa.class, PesquisaProduto.class, Concorrente.class}, version = 1)
+@Database(entities = {Pesquisa.class, PesquisaProduto.class, Concorrente.class}, version = 2)
 public abstract class PesquisaDatabase extends RoomDatabase {
 
-    // DB name
-    public static final String DATABASE_NAME = "PesquisaApp";
 
-    //Padrão Singleton
     public static PesquisaDatabase instance;
-
-    //DB Constructor
-    static PesquisaDatabase getInstance(final Context context) {
-
-        if (instance == null) {
-            instance = Room.databaseBuilder(
-                    context.getApplicationContext(),
-                    PesquisaDatabase.class,
-                    DATABASE_NAME
-            ).build();
-        }
-        return instance;
-    }
 
     //Criar referencia para o Dao
     public abstract PesquisaDao getPesquisaDao();
     public abstract PesquisaProdutoDao getPesquisaProdutoDao();
     public abstract ConcorrenteDao getConcorrenteDao();
+
+    private static final Object sLock = new Object();
+
+
+
+    public static final String DATABASE_NAME = "PesquisaApp.db";
+    //Padrão Singleton
+
+
+
+    @VisibleForTesting
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("insert into Concorrente (ID, Nome) values (1,'BH');");
+            database.execSQL("insert into Concorrente (ID, Nome) values (2,'EPA');");
+            database.execSQL("insert into Concorrente (ID, Nome) values (3,'DIA');");
+        }
+    };
+
+    static PesquisaDatabase getInstance(final Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(),
+                    PesquisaDatabase.class, DATABASE_NAME)
+                    .addMigrations(MIGRATION_1_2)
+                    .build();
+        }
+
+        return instance;
+    }
+
 
 }

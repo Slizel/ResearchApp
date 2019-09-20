@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Concorrente {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     private int ID;
 
     @NonNull
