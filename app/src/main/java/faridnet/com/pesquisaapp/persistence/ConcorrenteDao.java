@@ -16,8 +16,9 @@ public interface ConcorrenteDao {
     long[] insertConcorrente(Concorrente... concorrente);
 
 
-    @Query("SELECT * FROM Concorrente order by Nome")
+    @Query("SELECT * FROM Concorrente")
     List<Concorrente> getAll();
+
 
 
     @Query("SELECT * FROM Concorrente where ID = :id")

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import faridnet.com.pesquisaapp.R;
 import faridnet.com.pesquisaapp.activity.PesquisaListActivity;
 import faridnet.com.pesquisaapp.models.Pesquisa;
+import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.persistence.PesquisaRepository;
 import faridnet.com.pesquisaapp.util.Utility;
 
@@ -61,6 +62,7 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
         // Old static que mostra a data igual pra todos
         viewHolder.ID.setText(String.valueOf(mPesquisa.get(i).getID()));
         viewHolder.IdConcorrente.setText(String.valueOf(mPesquisa.get(i).getConcorrenteID()));
+        //viewHolder.IdConcorrente.setText(mPesquisa.get(i).toString());
         viewHolder.Data.setText(mPesquisa.get(i).getData());
 
         //New Dynamic que mostra a data dinamicamente.

@@ -17,7 +17,7 @@ public class Concorrente {
     @ColumnInfo(name = "Nome")
     private String Nome;
 
-    @Ignore
+
     public Concorrente(int ID, String Nome) {
         this.ID = ID;
         this.Nome = Nome;
@@ -28,7 +28,7 @@ public class Concorrente {
         this.ID = Id;
     }
 
-
+    @Ignore
     public Concorrente(String Nome) {
         this.Nome = Nome;
     }
@@ -36,7 +36,6 @@ public class Concorrente {
     @Ignore
     public Concorrente() {
     }
-
 
     public int getID() {
         return ID;
@@ -57,10 +56,6 @@ public class Concorrente {
 
     @Override
     public String toString() {
-        return "Concorrente{" +
-                "Id=" + ID +
-                ", nome='" + Nome + '\'' +
-                '}';
+        return Nome;
     }
-
 }

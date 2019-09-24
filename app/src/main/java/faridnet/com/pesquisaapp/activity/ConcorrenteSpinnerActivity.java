@@ -14,11 +14,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import faridnet.com.pesquisaapp.R;
 import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.persistence.ConcorrenteRepository;
 import faridnet.com.pesquisaapp.persistence.PesquisaDao;
+import faridnet.com.pesquisaapp.persistence.PesquisaDatabase;
 import faridnet.com.pesquisaapp.persistence.PesquisaRepository;
 
 public class ConcorrenteSpinnerActivity extends AppCompatActivity
@@ -29,6 +34,9 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
     private long[] getPesquisaId;
     private PesquisaDao PesquisaId;
+    private Spinner mSpinner;
+
+   private List<Concorrente> listConcorrente = new ArrayList<>();
 
     private String[] concorrenteNome = new String[]{"Supermercado BH", "Supermercado EPA", "Supermercado Dia"};
     private int[] concorrenteImg = {R.drawable.bh_supermercado, R.drawable.epa_supermercado, R.drawable.dia_supermercado};
@@ -48,12 +56,21 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concorrente_spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, concorrenteNome);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, concorrenteNome);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //BD instanciando o repositorio
         mPesquisaRepository = new PesquisaRepository(this);
         mConcorrenteRepository = new ConcorrenteRepository(this);
+
+        List<Concorrente> lConcorrentes = PesquisaDatabase.getInstance(this).getConcorrenteDao().getAll();
+
+        ArrayAdapter<Concorrente> adapter = new ArrayAdapter<Concorrente>(this, android.R.layout.simple_spinner_dropdown_item, lConcorrentes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mSpinner = findViewById(R.id.concorrente_spinner);
+        mSpinner.setAdapter(adapter);
+
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_spinner));
         //setTitle("Concorrente");
@@ -63,10 +80,10 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
         iv = (ImageView) findViewById(R.id.verImagem);
 
-        sp = (Spinner) findViewById(R.id.concorrente_spinner);
-        sp.setAdapter(adapter);
+       // sp = (Spinner) findViewById(R.id.concorrente_spinner);
+       // sp.setAdapter(adapter);
 
-        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 iv.setImageResource(concorrenteImg[position]);
@@ -92,24 +109,24 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
 
-
-        int posicao = sp.getSelectedItemPosition();
+        int posicao = mSpinner.getSelectedItemPosition();
 
         if (posicao == 0) {
             //supermercado BH
-            mConcorrente.setID(0);
-            mConcorrenteNome.setNome("Supermercado BH");
+            mConcorrente.setID(1);
+
+
 
 
         } else if (posicao == 1) {
             //supermercado EPA
-            mConcorrente.setID(1);
-            mConcorrenteNome.setNome("Supermercado EPA");
+            mConcorrente.setID(2);
+
         } else {
 
             //supermercado DIA
-            mConcorrente.setID(2);
-            mConcorrenteNome.setNome("Supermercado DIA");
+            mConcorrente.setID(3);
+
         }
 
         Pesquisa pesquisa = new Pesquisa(mConcorrente.getID());
