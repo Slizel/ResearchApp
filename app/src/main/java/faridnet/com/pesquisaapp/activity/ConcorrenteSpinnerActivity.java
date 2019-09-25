@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
     private long[] getPesquisaId;
     private PesquisaDao PesquisaId;
     private Spinner mSpinner;
+    private ImageButton imgButtom;
 
    private List<Concorrente> listConcorrente = new ArrayList<>();
 
@@ -55,7 +59,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concorrente_spinner);
-
+        imgButtom = findViewById(R.id.bsck_arrow);
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, concorrenteNome);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -95,6 +99,13 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
             }
         });
 
+        imgButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }// end oncreate
 
     public void showElement(View view) {
@@ -114,6 +125,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
         if (posicao == 0) {
             //supermercado BH
             mConcorrente.setID(1);
+            mConcorrenteNome.setNome("BH");
 
 
 
@@ -121,15 +133,17 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
         } else if (posicao == 1) {
             //supermercado EPA
             mConcorrente.setID(2);
+            mConcorrenteNome.setNome("EPA");
 
         } else {
 
             //supermercado DIA
             mConcorrente.setID(3);
+            mConcorrenteNome.setNome("DIA");
 
         }
 
-        Pesquisa pesquisa = new Pesquisa(mConcorrente.getID());
+        Pesquisa pesquisa = new Pesquisa(mConcorrenteNome.getNome());
         mPesquisaRepository.insertPesquisaTask(pesquisa);
 
         Intent intent = new Intent(this, PesquisaListActivity.class);

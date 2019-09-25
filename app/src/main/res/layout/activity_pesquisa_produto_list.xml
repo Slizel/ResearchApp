@@ -34,7 +34,7 @@
                 >
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/bsck_arrow"
+                    android:id="@+id/back_arrow"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"

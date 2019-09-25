@@ -5,16 +5,21 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import faridnet.com.pesquisaapp.util.Utility;
 
 @Entity(tableName = "Pesquisas")
+
 public class Pesquisa implements Parcelable {
 
 
@@ -23,6 +28,7 @@ public class Pesquisa implements Parcelable {
 
     @NonNull
     @ColumnInfo(name = "ConcorrenteID")
+    //@ForeignKey(entity = Concorrente.class, childColumns = "ConcorrenteID", parentColumns = "ID")
     private int ConcorrenteID;
 
     @NonNull
@@ -33,17 +39,23 @@ public class Pesquisa implements Parcelable {
     @ColumnInfo(name = "Syncronized")
     private boolean Sync;
 
-    public Pesquisa(int ConcorrenteID) {
+    @ColumnInfo(name ="ConcorrenteNome")
+    private String ConcorrenteNome;
+
+    public Pesquisa(String ConcorrenteNome) {
 
         //String Date = Utility.getCurrentTimestamp();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); //dd-MM-yyyy HH:mm"
         String currentDateTime = dateFormat.format(new Date());
 
-        this.ConcorrenteID = ConcorrenteID;
+        Date currentTime = Calendar.getInstance().getTime();
+
+        //this.ConcorrenteID = ConcorrenteID;
+        this.ConcorrenteNome = ConcorrenteNome;
         this.Data = currentDateTime;
         this.Sync = false;
-    }
 
+    }
 
     @Ignore
     public Pesquisa() {
@@ -54,6 +66,7 @@ public class Pesquisa implements Parcelable {
         ConcorrenteID = in.readInt();
         Data = in.readString();
         Sync = in.readByte() != 0;
+        ConcorrenteNome = in.readString();
     }
 
     public static final Creator<Pesquisa> CREATOR = new Creator<Pesquisa>() {
@@ -67,6 +80,15 @@ public class Pesquisa implements Parcelable {
             return new Pesquisa[size];
         }
     };
+
+    @NonNull
+    public String getConcorrenteNome() {
+        return ConcorrenteNome;
+    }
+
+    public void setConcorrenteNome(@NonNull String concorrenteNome) {
+        ConcorrenteNome = concorrenteNome;
+    }
 
     public int getID() {
         return ID;
@@ -107,6 +129,7 @@ public class Pesquisa implements Parcelable {
                 ", ConcorrenteID=" + ConcorrenteID +
                 ", Data='" + Data + '\'' +
                 ", Sync=" + Sync +
+                ", ConcorrenteNome='" + ConcorrenteNome + '\'' +
                 '}';
     }
 
@@ -121,5 +144,6 @@ public class Pesquisa implements Parcelable {
         parcel.writeInt(ConcorrenteID);
         parcel.writeString(Data);
         parcel.writeByte((byte) (Sync ? 1 : 0));
+        parcel.writeString(ConcorrenteNome);
     }
 }

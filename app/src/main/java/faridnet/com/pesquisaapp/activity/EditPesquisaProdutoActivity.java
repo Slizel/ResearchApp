@@ -1,15 +1,24 @@
 package faridnet.com.pesquisaapp.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.view.KeyEvent;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import faridnet.com.pesquisaapp.R;
 import faridnet.com.pesquisaapp.dialogs.ValidationDialog;
@@ -19,15 +28,15 @@ import faridnet.com.pesquisaapp.persistence.PesquisaProdutoRepository;
 import faridnet.com.pesquisaapp.util.MoneyTextWatcher;
 
 public class EditPesquisaProdutoActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
-
     private static final String TAG = "ConcorrenteActivity";
 
-    //ui
+    //UI
+    Button btn;
+    final Activity activity= this;
     private EditText codBarras;
     private EditText preco;
-    // private Button saveButton;
 
-    //varr
+    //Var
     private Pesquisa mPesquisa;
 
     //DB
@@ -37,11 +46,10 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_pesquisa_produto);
-     //   findViewById(R.id.id_salvar).setOnClickListener(this); //Referenciando o Floating action button
         codBarras = findViewById(R.id.edit_codBarras);
         preco = findViewById(R.id.edit_preco);
         preco.addTextChangedListener(new MoneyTextWatcher(preco));
-        //saveButton = findViewById(R.id.id_salvar);
+        btn = findViewById(R.id.scan_buttom);
 
         codBarras.addTextChangedListener(editPesquisaWatcher);
         preco.addTextChangedListener(editPesquisaWatcher);
@@ -61,8 +69,6 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
 
                         mPesquisaProdutoRepository.insertPesquisaProdutoTask(pesquisaProduto);
                         onBackPressed();
-
-                        //Toast.makeText(this, "Item gravado!", Toast.LENGTH_LONG).show();
                     }
 
                     return true;
@@ -78,7 +84,44 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
             mPesquisa = getIntent().getParcelableExtra("pesquisa");
             //Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
         }
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator intentIntegrator = new IntentIntegrator(activity);
+                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+                intentIntegrator.setOrientationLocked(true);
+                intentIntegrator.setPrompt("SCAN");
+                intentIntegrator.setCameraId(0);
+                intentIntegrator.initiateScan();
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+
+        if(intentResult != null){
+            if (intentResult.getContents() !=  null){
+                codBarras.setText(intentResult.getContents().toString());
+                preco.requestFocus();
+//                alert(intentResult.getContents().toString());
+            }else{
+                alert("Scan cancelado");
+            }
+        }else{
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+    }
+
+    private void alert(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+    }
+
 
     public void openDialog() {
         ValidationDialog validationDialog = new ValidationDialog();

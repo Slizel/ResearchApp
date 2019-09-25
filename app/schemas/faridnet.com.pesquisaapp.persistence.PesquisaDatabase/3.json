@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "d22700890d6bc46a1fe5421ed0e6306f",
+    "identityHash": "e9185cdc891533d74fdc387a7132eab3",
     "entities": [
       {
         "tableName": "Pesquisas",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ConcorrenteID` INTEGER NOT NULL, `Data` TEXT NOT NULL, `Syncronized` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ConcorrenteID` INTEGER NOT NULL, `Data` TEXT NOT NULL, `Syncronized` INTEGER NOT NULL, `ConcorrenteNome` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "ID",
@@ -30,6 +30,12 @@
             "fieldPath": "Sync",
             "columnName": "Syncronized",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ConcorrenteNome",
+            "columnName": "ConcorrenteNome",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -128,7 +134,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd22700890d6bc46a1fe5421ed0e6306f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e9185cdc891533d74fdc387a7132eab3')"
     ]
   }
 }

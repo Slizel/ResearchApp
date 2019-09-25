@@ -11,11 +11,12 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import faridnet.com.pesquisaapp.adapters.PesquisaRecyclerAdapter;
 import faridnet.com.pesquisaapp.models.Concorrente;
 import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.models.PesquisaProduto;
 
-@Database(entities = {Pesquisa.class, PesquisaProduto.class, Concorrente.class}, version = 3)
+@Database(entities = {Pesquisa.class, PesquisaProduto.class, Concorrente.class}, version = 1)
 public abstract class PesquisaDatabase extends RoomDatabase {
 
     public static PesquisaDatabase instance;

@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
 
     //Ui Components
     private RecyclerView mRecyclerView;
+    private ImageButton imgButton;
 
     //Vars
     private ArrayList<PesquisaProduto> mPesquisaProduto = new ArrayList<>();
@@ -54,6 +56,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesquisa_produto_list);
 
+        imgButton = findViewById(R.id.back_arrow);
         //RecyclerView---
         mRecyclerView = findViewById(R.id.pesquisa_produto_recyclerview);
 
@@ -73,6 +76,14 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
 
             initRecyclerView();
             retrievePesquisaProduto(mPesquisa.getID());
+
+
+            imgButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onBackPressed();
+                }
+            });
 
         }
     }
