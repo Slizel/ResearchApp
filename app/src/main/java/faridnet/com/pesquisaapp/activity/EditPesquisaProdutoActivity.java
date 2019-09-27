@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.KeyEvent;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
     private static final String TAG = "ConcorrenteActivity";
 
     //UI
-    Button btn;
+    ImageButton btn;
     final Activity activity= this;
     private EditText codBarras;
     private EditText preco;
@@ -82,7 +83,7 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
         // Recebendo o ID da classe PEsquisa através do extra
         if (getIntent().hasExtra("pesquisa")) {
             mPesquisa = getIntent().getParcelableExtra("pesquisa");
-            //Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
         }
 
         btn.setOnClickListener(new View.OnClickListener() {

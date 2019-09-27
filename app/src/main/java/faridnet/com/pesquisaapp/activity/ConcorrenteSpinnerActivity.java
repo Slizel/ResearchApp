@@ -32,7 +32,6 @@ import faridnet.com.pesquisaapp.persistence.PesquisaRepository;
 public class ConcorrenteSpinnerActivity extends AppCompatActivity
         implements View.OnClickListener {
 
-
     private static final String TAG = "ConcorrenteSpinnerActiv";
 
     private long[] getPesquisaId;
@@ -90,7 +89,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                iv.setImageResource(concorrenteImg[position]);
+//                iv.setImageResource(concorrenteImg[position]);
             }
 
             @Override
@@ -127,9 +126,6 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
             mConcorrente.setID(1);
             mConcorrenteNome.setNome("BH");
 
-
-
-
         } else if (posicao == 1) {
             //supermercado EPA
             mConcorrente.setID(2);
@@ -143,12 +139,23 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
         }
 
-        Pesquisa pesquisa = new Pesquisa(mConcorrenteNome.getNome());
-        mPesquisaRepository.insertPesquisaTask(pesquisa);
 
-        Intent intent = new Intent(this, PesquisaListActivity.class);
-        intent.putExtra("concorrente_id", mConcorrente.getID());
-        Log.d(TAG, "onCreate: " + mConcorrente.toString());
+        Pesquisa pesquisa = new Pesquisa(mConcorrenteNome.getNome());
+        long pesquisaID = mPesquisaRepository.insertPesquisaTask(pesquisa);
+        pesquisa = mPesquisaRepository.getById((int)pesquisaID);
+
+        Intent intent = new Intent(this, PesquisaProdutoListActivity.class);
+        intent.putExtra("pesquisa", pesquisa);
         startActivity(intent);
+
+
+
+
+
+//        Log.d(TAG, String.format("onCreate: " + pesquisaID ));
+//        Intent intent = new Intent(this, PesquisaProdutoListActivity.class);
+//        intent.putExtra("concorrente_id", mConcorrente.getID());
+//        Log.d(TAG, "onCreate: " + mConcorrente.toString());
+//        startActivity(intent);
     }
 }

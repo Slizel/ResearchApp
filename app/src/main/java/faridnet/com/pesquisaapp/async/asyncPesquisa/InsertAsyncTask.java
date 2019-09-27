@@ -7,7 +7,7 @@ import faridnet.com.pesquisaapp.models.Pesquisa;
 import faridnet.com.pesquisaapp.persistence.PesquisaDao;
 import faridnet.com.pesquisaapp.persistence.PesquisaDatabase;
 
-public class InsertAsyncTask extends AsyncTask<Pesquisa, Void, Void> {
+public class InsertAsyncTask extends AsyncTask<Pesquisa, Void, Long> {
 
 //    private int insertId = -1;
 //    private Pesquisa pesquisa;
@@ -20,14 +20,10 @@ public class InsertAsyncTask extends AsyncTask<Pesquisa, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Pesquisa... pesquisas) {
+    protected Long doInBackground(final Pesquisa... pesquisas) {
 
-        //pesquisa = pesquisas[0];
-        //insertId = (int) pesquisaDatabase.getPesquisaDao().insertPesquisa(pesquisa);
-
-         mPesquisaDao.insertPesquisa(pesquisas);
-         return null;
-
+        long insertId = this.mPesquisaDao.insertPesquisa(pesquisas[0])[0];
+        return insertId;
     }
 
 //    @Override

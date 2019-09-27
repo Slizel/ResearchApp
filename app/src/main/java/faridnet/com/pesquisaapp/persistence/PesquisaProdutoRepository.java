@@ -24,6 +24,10 @@ public class PesquisaProdutoRepository {
         new InsertAsyncTaskPesquisaProduto(mPesquisaProdutoDatabase.getPesquisaProdutoDao()).execute(pesquisaProduto);
     }
 
+    public void insertPesquisaProdutoTask2(PesquisaProduto pesquisaProduto) {
+        new InsertAsyncTaskPesquisaProduto(mPesquisaProdutoDatabase.getPesquisaProdutoDao()).execute(pesquisaProduto);
+    }
+
     public LiveData<List<PesquisaProduto>> retrivePesquisaProdutoTask(int pesquisaID) {
         //Referencia o getPesquisaProduto do DAO que retorna um objeto LiveData que contem uma lista com todas a notas do DB
         return mPesquisaProdutoDatabase.getPesquisaProdutoDao().getPesquisaProduto(pesquisaID);

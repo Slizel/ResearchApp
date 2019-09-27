@@ -8,38 +8,39 @@
     android:gravity="center_vertical">
 
     <View
-        android:layout_width="3dp"
+        android:layout_width="5dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:background="@color/colorVarejo" />
 
     <TextView
         android:id="@+id/cod_barras"
-        android:layout_width="253dp"
+        android:layout_width="276dp"
         android:layout_height="wrap_content"
         android:layout_weight="75"
         android:lines="1"
         android:padding="10dp"
         android:text="Cod. Barras"
         android:textColor="@color/black"
-        android:textSize="23sp" />
+        android:textSize="20sp" />
 
     <View
-        android:layout_width="6dp"
+        android:layout_width="5dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
         android:background="@color/white" />
 
     <TextView
         android:id="@+id/preco"
-        android:layout_width="98dp"
+        android:layout_width="154dp"
         android:layout_height="wrap_content"
         android:layout_weight="20"
         android:lines="1"
         android:padding="10dp"
         android:text="Preço"
+        android:textAlignment="textEnd"
         android:textColor="@color/colorRed"
-        android:textSize="17sp" />
+        android:textSize="16sp" />
 
     <View
         android:layout_width="0dp"

@@ -70,7 +70,8 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
 
         // Recebendo o ID da classe PEsquisa através do extra
         if (getIntent().hasExtra("pesquisa")) {
-            mPesquisa = getIntent().getParcelableExtra("pesquisa");
+            Intent intent = getIntent();
+            mPesquisa = intent.getParcelableExtra("pesquisa");
             Log.d(TAG, "onCreate PesquisaListActivity: recebeu no get Extras " + mPesquisa.toString());
             //Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
 

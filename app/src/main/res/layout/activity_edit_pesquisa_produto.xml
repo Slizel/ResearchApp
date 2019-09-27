@@ -11,20 +11,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name" />
+        android:text="Pesquisa Produto"
+        android:textSize="32dp"
+        />
+
 
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20sp">
+
 
         <EditText
             android:id="@+id/edit_codBarras"
-            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
             android:hint="Código de Barras"
             android:imeOptions="flagNoExtractUi"
             android:inputType="number"
@@ -33,16 +39,13 @@
             />
         <requestFocus />
 
-        <Button
-            android:id="@+id/scan_buttom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_rounded"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:text="Scan"
 
-            />
+        <ImageButton
+            android:id="@+id/scan_buttom"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:src="@drawable/ic_center_focus_weak_varejo_24dp"/>
 
     </LinearLayout>
 
@@ -58,3 +61,5 @@
         android:tag="R$ "/>
 
 </LinearLayout>
+
+    <!--android:background="@drawable/button_rounded"-->

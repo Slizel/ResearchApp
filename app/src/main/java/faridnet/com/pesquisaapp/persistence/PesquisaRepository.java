@@ -18,14 +18,20 @@ public class PesquisaRepository {
         mPesquisaDatabese = PesquisaDatabase.getInstance(context);
     }
 
-    public void insertPesquisaTask(Pesquisa pesquisa) {
-        new InsertAsyncTask(mPesquisaDatabese.getPesquisaDao()).execute(pesquisa);
+    public long insertPesquisaTask(Pesquisa pesquisa) {
+        long id = mPesquisaDatabese.getPesquisaDao().insert(pesquisa);
+        return id;
     }
 
 
     public LiveData<List<Pesquisa>> retrivePesquisaTask() {
         return mPesquisaDatabese.getPesquisaDao().getPesquisa();
     }
+
+    public Pesquisa getById(int Id){
+        return mPesquisaDatabese.getPesquisaDao().getById(Id);
+    }
+
 
     public void deletePesquisa(Pesquisa pesquisa) {
 
