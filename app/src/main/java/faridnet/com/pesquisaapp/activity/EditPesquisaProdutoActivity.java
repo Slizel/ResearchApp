@@ -21,6 +21,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+//import com.google.android.gms.vision.barcode.Barcode;
+//import com.notbytes.barcode_reader.BarcodeReaderFragment;
+
 import faridnet.com.pesquisaapp.R;
 import faridnet.com.pesquisaapp.dialogs.ValidationDialog;
 import faridnet.com.pesquisaapp.models.Pesquisa;
@@ -29,6 +32,7 @@ import faridnet.com.pesquisaapp.persistence.PesquisaProdutoRepository;
 import faridnet.com.pesquisaapp.util.MoneyTextWatcher;
 
 public class EditPesquisaProdutoActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
+
     private static final String TAG = "ConcorrenteActivity";
 
     //UI
@@ -91,13 +95,14 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
             public void onClick(View v) {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(activity);
                 intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
-                intentIntegrator.setOrientationLocked(true);
+                intentIntegrator.setOrientationLocked(false);
                 intentIntegrator.setPrompt("SCAN");
                 intentIntegrator.setCameraId(0);
                 intentIntegrator.initiateScan();
             }
         });
-    }
+
+    } // Fim do OnCreate
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
