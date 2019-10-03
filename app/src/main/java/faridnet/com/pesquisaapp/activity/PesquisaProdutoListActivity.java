@@ -56,7 +56,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesquisa_produto_list);
 
-        imgButton = findViewById(R.id.back_arrow);
+        //imgButton = findViewById(R.id.back_arrow);
         //RecyclerView---
         mRecyclerView = findViewById(R.id.pesquisa_produto_recyclerview);
 
@@ -79,14 +79,25 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
             retrievePesquisaProduto(mPesquisa.getID());
 
 
-            imgButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onBackPressed();
-                }
-            });
+//            imgButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    onBackPressed();
+//                }
+//            });
+
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // new intent to call an activity that you choose
+        Intent intent = new Intent(this, PesquisaListActivity.class);
+        startActivity(intent);
+        // finish the activity picture
+        this.finish();
     }
 
     private void insertFakenotes() {

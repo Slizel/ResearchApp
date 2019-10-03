@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ import faridnet.com.pesquisaapp.util.VerticalSpacingItemDecorator;
 public class PesquisaListActivity extends AppCompatActivity implements
         PesquisaRecyclerAdapter.OnPesquisaListener,
         View.OnClickListener,
-        PesquisaRecyclerAdapter.ClickListener {
+        PesquisaRecyclerAdapter.ClickListener{
 
     private static final String TAG = "PesquisaListActivity";
 
@@ -67,10 +68,21 @@ public class PesquisaListActivity extends AppCompatActivity implements
         //Iniciando o BD no oncrea
         mPesquisaRepository = new PesquisaRepository(this);
 
+
         //Inicia a recyclerview
         initRecyclerView();
         retrivePesquisa();
     }
+
+    public void onButtonClick(View view){
+
+        retrivePesquisa();
+
+
+
+
+    }
+
 
     //Método para buscar o live data no BD
     private void retrivePesquisa() {
@@ -165,30 +177,88 @@ public class PesquisaListActivity extends AppCompatActivity implements
     public void clickListener(final int position) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(PesquisaListActivity.this);
-        builder.setTitle("Deletar Pesquisa");
-        builder.setMessage("Você tem certeza que deseja deletar a pesquisa?");
+        builder.setTitle("Deleção/Sincronização");
+        builder.setMessage("Você deseja sincronizar ou deletar a pesqusa?");
 
-        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Sincronizar", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface, int which) {
 
-                Toast.makeText(getApplicationContext(),
-                        "Pesquisa Deletada", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(PesquisaListActivity.this);
+                builder.setTitle("Sincronizar Pesquisa");
+                builder.setMessage("Você tem certeza que deseja sincronizar a pesquisa?");
 
-                deletePesquisa(mPesquisa.get(position));
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "Pesquisa Sincronizada", Toast.LENGTH_SHORT).show();
+
+                        deletePesquisa(mPesquisa.get(position));
+                    }
+                });
+
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+                        Toast.makeText(getApplicationContext(),
+                                "Sincronização cancelada", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Deletar", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(PesquisaListActivity.this);
+                builder.setTitle("Deletar Pesquisa");
+                builder.setMessage("Você tem certeza que deseja deletar a pesquisa? Pesquisas deletadas não podem ser recuperadas.");
+
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "Pesquisa deletada", Toast.LENGTH_SHORT).show();
+
+                        deletePesquisa(mPesquisa.get(position));
+                    }
+                });
+
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+                        Toast.makeText(getApplicationContext(),
+                                "Deleção cancelada", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
                 // Do something when No button clicked
                 Toast.makeText(getApplicationContext(),
-                        "Deleção Cancelada", Toast.LENGTH_SHORT).show();
+                        "Ação cancelada.", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }

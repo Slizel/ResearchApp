@@ -24,31 +24,43 @@
         android:id="@+id/id_pesquisa_ID"
         android:layout_width="62dp"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
+        android:layout_weight="10"
         android:lines="1"
         android:padding="10dp"
         android:text="Pesq ID"
         android:textColor="@color/black"
-        android:textSize="17sp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/id_concorrente"
-        android:layout_width="145dp"
+        android:layout_width="165dp"
         android:layout_height="match_parent"
-        android:layout_weight="45"
+        android:layout_weight="40"
         android:lines="1"
         android:padding="10dp"
         android:text="Supermercado BH"
         android:textColor="@color/black"
-        android:textSize="23sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/id_data_pesquisa"
-        android:layout_width="108dp"
+        android:layout_width="93dp"
         android:layout_height="51dp"
-        android:layout_weight="30"
+        android:layout_weight="25"
         android:padding="10dp"
         android:text="Aug 22"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="10sp" />
+
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/sync_btn"-->
+        <!--android:layout_width="58dp"-->
+        <!--android:layout_height="51dp"-->
+        <!--android:layout_weight="20"-->
+        <!--android:background="@color/white"-->
+        <!--android:src="@drawable/ic_sync_varejo_24dp"-->
+
+         <!--/>-->
+
 </LinearLayout>

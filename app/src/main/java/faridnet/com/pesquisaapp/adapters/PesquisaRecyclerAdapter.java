@@ -2,8 +2,6 @@ package faridnet.com.pesquisaapp.adapters;
 
 
 import android.annotation.SuppressLint;
-import android.app.Application;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -14,15 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import faridnet.com.pesquisaapp.R;
-import faridnet.com.pesquisaapp.activity.PesquisaListActivity;
 import faridnet.com.pesquisaapp.models.Pesquisa;
-import faridnet.com.pesquisaapp.models.Concorrente;
-import faridnet.com.pesquisaapp.persistence.PesquisaDatabase;
 import faridnet.com.pesquisaapp.persistence.PesquisaRepository;
-import faridnet.com.pesquisaapp.util.Utility;
 
 public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecyclerAdapter.ViewHolder> {
 
@@ -35,7 +28,6 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
     //Vinculando a interface onPesquisaListener no Adapter
     private OnPesquisaListener mOnPesquisaListener;
     private ClickListener mClickListener;
-
 
     //Construtor com a estrutura de dados arraylist como parametro
     public PesquisaRecyclerAdapter(ArrayList<Pesquisa> pesquisa, OnPesquisaListener onPesquisaListener, ClickListener clickListener) {
@@ -67,6 +59,7 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
         //viewHolder.IdConcorrente.setText(String.valueOf(mPesquisa.get(i).getConcorrenteID()));
         viewHolder.IdConcorrente.setText(mPesquisa.get(i).getConcorrenteNome());
         viewHolder.Data.setText(mPesquisa.get(i).getData());
+
 
         //New Dynamic que mostra a data dinamicamente.
 //        try {
@@ -122,7 +115,6 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
             this.onPesquisaListener = onPesquisaListener;
             this.clickListener = clickListener;
 
-
             //Vincular o onClickListener em toda ViewHolder
 
             itemView.setOnClickListener(this); // O this está se referindo a interface que foi implementada View.OnClickListener
@@ -160,6 +152,5 @@ public class PesquisaRecyclerAdapter extends RecyclerView.Adapter<PesquisaRecycl
 
         void clickListener(int position);
     }
-
 
 } // fim

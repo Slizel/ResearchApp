@@ -58,7 +58,7 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concorrente_spinner);
-        imgButtom = findViewById(R.id.bsck_arrow);
+          //imgButtom = findViewById(R.id.bsck_arrow);
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, concorrenteNome);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -98,14 +98,14 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
             }
         });
 
-        imgButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+//        imgButtom.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onBackPressed();
+//            }
+//        });
 
-    }// end oncreate
+    } // end oncreate
 
     public void showElement(View view) {
 
@@ -139,7 +139,6 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
 
         }
 
-
         Pesquisa pesquisa = new Pesquisa(mConcorrenteNome.getNome());
         long pesquisaID = mPesquisaRepository.insertPesquisaTask(pesquisa);
         pesquisa = mPesquisaRepository.getById((int)pesquisaID);
@@ -147,10 +146,6 @@ public class ConcorrenteSpinnerActivity extends AppCompatActivity
         Intent intent = new Intent(this, PesquisaProdutoListActivity.class);
         intent.putExtra("pesquisa", pesquisa);
         startActivity(intent);
-
-
-
-
 
 //        Log.d(TAG, String.format("onCreate: " + pesquisaID ));
 //        Intent intent = new Intent(this, PesquisaProdutoListActivity.class);
