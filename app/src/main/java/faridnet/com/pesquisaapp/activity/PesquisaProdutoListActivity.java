@@ -72,12 +72,9 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
         if (getIntent().hasExtra("pesquisa")) {
             Intent intent = getIntent();
             mPesquisa = intent.getParcelableExtra("pesquisa");
-            Log.d(TAG, "onCreate PesquisaListActivity: recebeu no get Extras " + mPesquisa.toString());
-            //Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
 
             initRecyclerView();
             retrievePesquisaProduto(mPesquisa.getID());
-
 
 //            imgButton.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -100,16 +97,16 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
         this.finish();
     }
 
-    private void insertFakenotes() {
-        for (int i = 0; i < 1000; i++) {
-            PesquisaProduto pesquisaProduto = new PesquisaProduto();
-            pesquisaProduto.setCodBarras("Cod. Barras #" + i);
-            pesquisaProduto.setPreco("Preço R$:" + i);
-            mPesquisaProduto.add(pesquisaProduto);
-        }
-
-        mPesquisaProdutoRecyclerDapter.notifyDataSetChanged();
-    }
+//    private void insertFakenotes() {
+//        for (int i = 0; i < 1000; i++) {
+//            PesquisaProduto pesquisaProduto = new PesquisaProduto();
+//            pesquisaProduto.setCodBarras("Cod. Barras #" + i);
+//            pesquisaProduto.setPreco("Preço R$:" + i);
+//            mPesquisaProduto.add(pesquisaProduto);
+//        }
+//
+//        mPesquisaProdutoRecyclerDapter.notifyDataSetChanged();
+//    }
 
     private void retrievePesquisaProduto(int pesquisaID) {
         mPesquisaProdutoRepository.retrivePesquisaProdutoTask(pesquisaID).observe((LifecycleOwner) this, new Observer<List<PesquisaProduto>>() {
@@ -149,7 +146,6 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        //Toast.makeText(this, "OnClick Clicado!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, EditPesquisaProdutoActivity.class);
         intent.putExtra("pesquisa", mPesquisa);
         startActivity(intent);
@@ -157,9 +153,7 @@ public class PesquisaProdutoListActivity extends AppCompatActivity
 
     @Override
     public void onPesquisaProdutoClick(int position) {
-        //Toast.makeText(this, "Item PesquisaProduto Clicado!" +
-        //        "" + mPesquisa.toString(), Toast.LENGTH_LONG).show();
-        //Log.d(TAG, "CONTEUDO DE mPesquisaProduto " + mPesquisaProduto.toString());
+
     }
 
     @Override

@@ -178,7 +178,7 @@ public class PesquisaListActivity extends AppCompatActivity implements
 
         AlertDialog.Builder builder = new AlertDialog.Builder(PesquisaListActivity.this);
         builder.setTitle("Deleção/Sincronização");
-        builder.setMessage("Você deseja sincronizar ou deletar a pesqusa?");
+        builder.setMessage("Você deseja sincronizar ou deletar a pesquisa?");
 
         builder.setPositiveButton("Sincronizar", new DialogInterface.OnClickListener() {
             @Override

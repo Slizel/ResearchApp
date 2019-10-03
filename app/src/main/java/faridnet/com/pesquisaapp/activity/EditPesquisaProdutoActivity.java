@@ -87,7 +87,7 @@ public class EditPesquisaProdutoActivity extends AppCompatActivity implements Vi
         // Recebendo o ID da classe PEsquisa através do extra
         if (getIntent().hasExtra("pesquisa")) {
             mPesquisa = getIntent().getParcelableExtra("pesquisa");
-            Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "O retorno foi:" + mPesquisa, Toast.LENGTH_LONG).show();
         }
 
         btn.setOnClickListener(new View.OnClickListener() {
